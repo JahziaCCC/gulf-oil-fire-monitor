@@ -1,0 +1,28 @@
+name: Gulf Oil Fire Monitor
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+
+jobs:
+  run-monitor:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: install python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: install packages
+        run: pip install requests
+
+      - name: run monitor
+        run: python main.py
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
