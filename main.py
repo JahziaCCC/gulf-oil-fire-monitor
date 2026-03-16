@@ -22,25 +22,27 @@ def build_report():
     report.append("════════════════════")
     report.append(f"🔥 النقاط الحرارية الخام: {raw_count}")
     report.append(f"📍 المواقع الحرارية المجمعة: {cluster_count}")
-    report.append(f"🛢️ المواقع النفطية المشتبه بها: {suspected_count}")
+    report.append(f"🛢️ المواقع النفطية المشتبه بها بعد الفلترة: {suspected_count}")
     report.append("")
 
     if not has_suspected_fire:
         report.append("📌 الحالة:")
-        report.append("لا توجد حاليًا مواقع مشتبه بها بشكل كافٍ كحرائق نفطية مؤكدة أو مرجحة.")
+        report.append("لا توجد حاليًا مواقع مشتبه بها بشكل كافٍ بعد تطبيق الفلترة الذكية.")
         report.append("")
         report.append("🧾 ملاحظة:")
-        report.append("قد تتضمن النقاط الخام مشاعل غاز أو نشاطًا صناعيًا حراريًا أو إشارات غير مؤكدة.")
+        report.append("تم استبعاد جزء من الإشارات الثابتة والمشاعل المعروفة لتقليل الضجيج.")
         report.append("")
     else:
         report.append("📌 الحالة:")
-        report.append("تم رصد مواقع حرارية مشتبه بها وتحتاج للتحقق الإضافي من طبيعتها النفطية.")
+        report.append("تم رصد مواقع حرارية تستحق المراجعة بعد تطبيق الفلترة الذكية.")
         report.append("")
         report.append("════════════════════")
         report.append("📍 أبرز المواقع المشتبه بها")
 
         for c in clusters:
-            report.append(f"• {c['lat']}, {c['lon']} | عدد النقاط: {c['count']}")
+            report.append(
+                f"• {c['lat']}, {c['lon']} | عدد النقاط: {c['count']} | النطاق: {c['zone']}"
+            )
 
         report.append("")
 
@@ -75,11 +77,12 @@ def build_report():
     report.append("🧭 التفسير التشغيلي")
 
     if not has_suspected_fire:
-        report.append("• النظام يرصد حرارة عامة أولًا ثم يفلترها.")
-        report.append("• عدم وجود موقع مشتبه به لا يعني عدم وجود كل نشاط حراري، بل يعني عدم كفاية المؤشرات الحالية.")
+        report.append("• تمت تصفية المشاعل والمواقع الحرارية الثابتة قدر الإمكان.")
+        report.append("• عدم وجود مواقع مشتبه بها لا يعني انعدام النشاط الحراري الخام، بل يعني انخفاض الإشارات الشاذة.")
     else:
-        report.append("• توجد مواقع حرارية متكررة تستحق المراجعة.")
+        report.append("• هذه المواقع اجتازت الفلترة الأولية وتستحق التحقق الإضافي.")
         report.append("• يلزم ربطها بالدخان والانبعاثات والرياح لتأكيد الحدث.")
+        report.append("• ما زالت بعض الإشارات قد تمثل نشاطًا صناعيًا ثابتًا غير حادثي.")
 
     return "\n".join(report)
 
