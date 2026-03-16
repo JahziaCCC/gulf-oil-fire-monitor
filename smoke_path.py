@@ -5,7 +5,6 @@ def estimate_smoke_path(has_fire=False):
             "impact": []
         }
 
-    # نسخة انتقالية لحين ربطها برياح حقيقية
     return {
         "direction": "قيد التطوير",
         "impact": []
