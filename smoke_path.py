@@ -2,10 +2,12 @@ def estimate_smoke_path(has_fire=False):
     if not has_fire:
         return {
             "direction": "لا يوجد",
-            "impact": []
+            "impact": [],
+            "smoke_detected": False
         }
 
     return {
         "direction": "قيد التطوير",
-        "impact": []
+        "impact": [],
+        "smoke_detected": False
     }
