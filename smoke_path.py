@@ -1,28 +1,12 @@
-import random
-
 def estimate_smoke_path():
 
-    directions = [
-        "شمال",
-        "جنوب",
-        "شرق",
-        "غرب",
-        "جنوب شرق",
-        "شمال شرق"
-    ]
+    # نسخة مبسطة (سيتم تحسينها لاحقًا)
 
-    direction = random.choice(directions)
+    direction = "غير معروف"
 
-    impact = {
-        "جنوب شرق": ["الكويت","شرق السعودية"],
-        "شرق": ["البحرين","قطر"],
-        "جنوب": ["السعودية"],
-        "شمال": ["العراق"],
-        "شمال شرق": ["إيران"],
-        "غرب": ["السعودية"]
-    }
+    impact = []
 
     return {
         "direction": direction,
-        "impact": impact.get(direction, [])
+        "impact": impact
     }
