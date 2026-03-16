@@ -1,12 +1,12 @@
-def estimate_smoke_path():
+def estimate_smoke_path(has_fire=False):
+    if not has_fire:
+        return {
+            "direction": "لا يوجد",
+            "impact": []
+        }
 
-    # نسخة مبسطة (سيتم تحسينها لاحقًا)
-
-    direction = "غير معروف"
-
-    impact = []
-
+    # نسخة انتقالية لحين ربطها برياح حقيقية
     return {
-        "direction": direction,
-        "impact": impact
+        "direction": "قيد التطوير",
+        "impact": []
     }
