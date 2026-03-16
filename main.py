@@ -40,8 +40,7 @@ def build_report():
         report.append("📍 أبرز المواقع المشتبه بها")
 
         for c in clusters:
-            if c["suspected"]:
-                report.append(f"• {c['lat']}, {c['lon']} | عدد النقاط: {c['count']}")
+            report.append(f"• {c['lat']}, {c['lon']} | عدد النقاط: {c['count']}")
 
         report.append("")
 
